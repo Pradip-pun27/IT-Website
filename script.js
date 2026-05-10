@@ -779,10 +779,21 @@ function renderApps() {
       </div>
     </div>
   `).join('');
+
+  // Set initial max-height for categories that start open
+  accordion.querySelectorAll('.app-category.open .category-body').forEach(body => {
+    body.style.maxHeight = body.scrollHeight + 'px';
+  });
 }
 
 function toggleCategory(el) {
-  el.classList.toggle('open');
+  const body = el.querySelector('.category-body');
+  const isOpen = el.classList.toggle('open');
+  if (isOpen) {
+    body.style.maxHeight = body.scrollHeight + 'px';
+  } else {
+    body.style.maxHeight = '0';
+  }
 }
 
 // ===== STATE =====
