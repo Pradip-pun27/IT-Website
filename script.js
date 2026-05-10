@@ -681,7 +681,7 @@ const appCategories = [
     emoji: "🤖",
     apps: [
       { name: "Learn-AI + AI Tools", desc: "AI basics, ML, prompt engineering", emoji: "🧠", url: "https://play.google.com/store/apps/details?id=com.learnaibasic.app" },
-      { name: "ChatGPT", desc: "OpenAI's official ChatGPT app", emoji: "💬", url: "https://play.google.com/store/apps/details?id=com.openai.chatgpt" },
+      { name: "KIMI-AI", desc: "Moonshoot's official Kimi k2", emoji: "💬", url: "https://www.kimi.com/" },
       { name: "Claude by Anthropic", desc: "AI assistant for deep work & coding", emoji: "✨", url: "https://play.google.com/store/apps/details?id=com.anthropic.claude" },
       { name: "Microsoft Copilot", desc: "AI chat with GPT-4, free", emoji: "🧩", url: "https://play.google.com/store/apps/details?id=com.microsoft.copilot" },
       { name: "Perplexity", desc: "AI-powered search & research", emoji: "🔍", url: "https://play.google.com/store/search?q=perplexity&c=apps" },
