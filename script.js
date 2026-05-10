@@ -698,7 +698,11 @@ const appCategories = [
       { name: "Lovable", desc: "Build apps with AI, no code needed", emoji: "❤️", url: "https://lovable.dev/" },
       { name: "Stitch by Google", desc: "AI-powered creative prototyping", emoji: "🧵", url: "https://stitch.withgoogle.com/" },
       { name: "Emergent", desc: "AI agent orchestration platform", emoji: "🚀", url: "https://app.emergent.sh/home" },
-      { name: "Krea AI Enhancer", desc: "AI image enhancement & generation", emoji: "🎨", url: "https://www.krea.ai/enhancer" }
+      { name: "Krea AI Enhancer", desc: "AI image enhancement & generation", emoji: "🎨", url: "https://www.krea.ai/enhancer" },
+      { name: "AI-Edge-Gallery", desc: "Run AI on ph offline", emoji: ":)", url: "https://play.google.com/store/search?q=AI%20edge%20Gallery&c=apps" },
+      { name: "NotebookLm", desc: "Chat with yrs docs and ytbe videos and get answers in diff. format", emoji: "🔍", url: "https://play.google.com/store/search?q=notebooklm&c=apps" },
+      { name: "Meta-AI", desc: "Dedicated AI site by Fb", emoji: "🤖", url: "https://meta.ai/" },
+      
     ]
   },
   {
