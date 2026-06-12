@@ -433,3 +433,255 @@ a { color: var(--primary); text-decoration: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .apps-grid { grid-template-columns: 1fr; }
 }
+
+
+/* ===== RESOURCE TOOLS ===== */
+.resource-tools {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: 24px; margin-bottom: 24px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-sm);
+}
+.resource-tools h2 { font-size: 1.35rem; margin-bottom: 4px; }
+.resource-tools p { color: var(--text-secondary); font-size: 0.9rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary) !important; font-weight: 700; font-size: 0.72rem !important; margin-bottom: 6px; }
+.resource-tool-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.bookmark-btn {
+  margin-left: auto; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary);
+  border-radius: 999px; width: 38px; height: 38px; cursor: pointer; font-size: 1rem;
+  transition: all var(--transition);
+}
+.bookmark-btn:hover, .bookmark-btn.saved { border-color: var(--warning); color: var(--warning); background: var(--warning-light); }
+.resource-card.highlight { outline: 3px solid var(--warning); animation: pulse-card 1.2s ease; }
+@keyframes pulse-card { 0% { transform: scale(0.98); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+
+/* ===== LEARNING PATHS ===== */
+.learning-paths { padding: 70px 0; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.path-tabs { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+.path-tab {
+  padding: 10px 16px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg);
+  color: var(--text-secondary); font-weight: 600; cursor: pointer; font-family: inherit; transition: all var(--transition);
+}
+.path-tab:hover, .path-tab.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.path-panel {
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; background: var(--bg);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 28px;
+}
+.path-panel h3 { font-size: 1.35rem; margin-bottom: 10px; }
+.path-panel p { color: var(--text-secondary); margin-bottom: 18px; }
+.path-steps { display: grid; gap: 12px; }
+.path-step { display: flex; gap: 12px; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.path-step strong { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--primary-light); color: var(--primary); }
+.path-materials { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.path-materials h4 { margin-bottom: 12px; }
+.path-materials a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border); font-weight: 500; }
+.path-materials a:last-child { border-bottom: none; }
+
+/* ===== TOOLKIT ===== */
+.toolkit-section { padding: 70px 0; }
+.toolkit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 28px; }
+.toolkit-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; transition: all var(--transition); }
+.toolkit-card:hover { transform: translateY(-2px); border-color: var(--primary); box-shadow: var(--shadow-md); }
+.toolkit-card > span { font-size: 2rem; display: inline-block; margin-bottom: 10px; }
+.toolkit-card h3 { margin-bottom: 10px; }
+.toolkit-card ul { padding-left: 18px; color: var(--text-secondary); font-size: 0.9rem; }
+.toolkit-card li { margin-bottom: 8px; }
+
+@media (max-width: 768px) {
+  .resource-tools { flex-direction: column; align-items: flex-start; }
+  .resource-tool-actions { width: 100%; justify-content: flex-start; }
+  .path-panel { grid-template-columns: 1fr; padding: 18px; }
+}
+
+/* ===== EXTRA MOBILE POLISH ===== */
+img, svg { max-width: 100%; }
+button, a, input { -webkit-tap-highlight-color: transparent; }
+.resource-card, .quick-link-card, .toolkit-card, .app-card, .path-panel { overflow-wrap: anywhere; }
+
+@media (max-width: 640px) {
+  .container, .nav-container { padding-left: 16px; padding-right: 16px; }
+  .nav-container { height: 58px; }
+  .nav-logo { font-size: 1.05rem; }
+  .theme-toggle, .mobile-menu-btn { min-width: 42px; min-height: 42px; justify-content: center; align-items: center; }
+
+  .hero { padding: 34px 16px 28px; gap: 20px; }
+  .hero-badge { font-size: 0.75rem; margin-bottom: 14px; }
+  .hero-content h1 { font-size: clamp(2rem, 12vw, 2.75rem); }
+  .hero-content p { font-size: 0.98rem; margin-bottom: 24px; }
+  .hero-buttons { display: grid; grid-template-columns: 1fr; margin-bottom: 28px; }
+  .btn { width: 100%; justify-content: center; padding: 13px 18px; }
+  .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 6px; }
+  .stat-label { font-size: 0.72rem; }
+
+  .search-section, .programs-section { padding: 26px 0 12px; }
+  .search-bar { padding: 12px 14px; border-radius: 16px; }
+  .search-bar input { font-size: 0.92rem; }
+  .filter-tags, .program-tabs, .path-tabs {
+    justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; padding: 2px 2px 10px;
+    scrollbar-width: thin; scroll-snap-type: x proximity;
+  }
+  .filter-tag, .program-tab, .path-tab { flex: 0 0 auto; scroll-snap-align: start; white-space: nowrap; min-height: 40px; }
+
+  .resources-section { padding: 22px 0 52px; }
+  .resource-tools { padding: 18px; gap: 14px; }
+  .resource-tools h2 { font-size: 1.15rem; }
+  .resource-tool-actions { display: grid; grid-template-columns: 1fr; }
+  .resources-grid, .quick-links-grid, .toolkit-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .resource-card { padding: 18px; }
+  .resource-header { gap: 10px; }
+  .resource-icon { width: 40px; height: 40px; font-size: 1.1rem; }
+  .resource-info h3 { font-size: 0.98rem; }
+  .bookmark-btn { width: 40px; height: 40px; }
+  .resource-link { width: 100%; justify-content: center; padding: 10px 14px; }
+
+  .learning-paths, .toolkit-section, .apps-section, .quick-links { padding: 48px 0; }
+  .section-title { font-size: 1.45rem; line-height: 1.25; }
+  .section-subtitle { font-size: 0.9rem; margin-bottom: 18px; }
+  .path-panel { padding: 16px; gap: 16px; }
+  .path-panel h3 { font-size: 1.12rem; }
+  .path-step { padding: 12px; align-items: flex-start; }
+  .path-step strong { width: 28px; height: 28px; }
+  .path-materials { padding: 16px; }
+  .toolkit-card { padding: 18px; }
+
+  .apps-accordion { gap: 10px; }
+  .category-header { padding: 14px; }
+  .category-header h3 { gap: 8px; }
+  .cat-icon { width: 34px; height: 34px; }
+  .apps-grid { grid-template-columns: 1fr; }
+  .app-card { padding: 12px; align-items: center; }
+  .app-card-badge { display: none; }
+
+  .footer { padding: 42px 0 20px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 18px; }
+  .footer-links a, .footer-links p { font-size: 0.9rem; }
+}
+
+@media (max-width: 380px) {
+  .container, .nav-container { padding-left: 12px; padding-right: 12px; }
+  .hero { padding-left: 12px; padding-right: 12px; }
+  .hero-stats { grid-template-columns: 1fr; }
+  .resource-card, .resource-tools, .path-panel, .toolkit-card { padding: 14px; }
+  .resource-header { align-items: center; }
+  .resource-tags { gap: 5px; }
+  .resource-tag { font-size: 0.68rem; padding: 3px 8px; }
+}
+
+/* ===== CSIT SEMESTER DROPDOWN SECTION ===== */
+.semester-picker-card {
+  max-width: 460px;
+  margin: 0 auto 24px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  box-shadow: var(--shadow-sm);
+}
+.semester-picker-card label,
+.material-select-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.semester-select,
+.material-select {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 44px 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  background-color: var(--surface);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--primary) 50%), linear-gradient(135deg, var(--primary) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 19px, calc(100% - 16px) 19px;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.semester-select:focus,
+.material-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+.csit-semester-panel {
+  align-items: start;
+}
+.focus-plan-card,
+.csit-materials-card {
+  min-width: 0;
+}
+.path-intro {
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+.materials-head {
+  display: grid;
+  grid-template-columns: 1fr minmax(190px, 230px);
+  gap: 14px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+.materials-head h4 { margin-bottom: 0; }
+.materials-list {
+  display: grid;
+  gap: 12px;
+}
+.material-card {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.material-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.material-subject {
+  display: inline-flex;
+  max-width: 100%;
+  margin-bottom: 8px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.material-card a {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.material-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .csit-semester-panel { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .semester-picker-card { margin-bottom: 18px; padding: 14px; }
+  .semester-select, .material-select { min-height: 44px; font-size: 0.92rem; }
+  .materials-head { grid-template-columns: 1fr; align-items: stretch; }
+  .material-select-label { margin-top: 2px; }
+  .material-card { padding: 12px; }
+}

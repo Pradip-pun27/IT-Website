@@ -669,6 +669,114 @@ const resources = [
     tags: ["Data Analytics", "SQL", "Excel", "Professional"],
     url: "https://www.coursera.org/professional-certificates/google-data-analytics",
     programs: ["bim", "csit"]
+  },
+  {
+    title: "Saylor Academy Computer Science",
+    type: "course",
+    icon: "course",
+    description: "Free self-paced CS courses with optional certificates: programming, networking, data structures, and software engineering.",
+    tags: ["CS", "Self-paced", "Certificate", "Free"],
+    url: "https://www.saylor.org/learn/computer-science/",
+    programs: ["csit", "bca"]
+  },
+  {
+    title: "OpenLearn Cyber Security",
+    type: "course",
+    icon: "course",
+    description: "Free Open University course introducing cyber security, privacy, threats, and basic defensive thinking.",
+    tags: ["Security", "Cybersecurity", "Beginner"],
+    url: "https://www.open.edu/openlearn/science-maths-technology/introduction-cyber-security/content-section-overview",
+    programs: ["csit", "bim", "bca"]
+  },
+  {
+    title: "Operating Systems: Three Easy Pieces",
+    type: "ebook",
+    icon: "ebook",
+    description: "Free OS textbook covering processes, concurrency, memory, file systems, and virtualization with clear explanations.",
+    tags: ["OS", "Textbook", "CSIT", "Advanced"],
+    url: "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+    programs: ["csit", "bca"]
+  },
+  {
+    title: "Computer Networking: A Top-Down Approach",
+    type: "ebook",
+    icon: "ebook",
+    description: "Official companion site with free slides, Wireshark labs, and learning material for networking courses.",
+    tags: ["Networking", "Slides", "Labs", "CSIT"],
+    url: "https://gaia.cs.umass.edu/kurose_ross/index.php",
+    programs: ["csit", "bim", "bca"]
+  },
+  {
+    title: "Postman Academy",
+    type: "tool",
+    icon: "tool",
+    description: "Learn APIs using Postman with free lessons, workspaces, and collections. Very useful for web projects.",
+    tags: ["API", "Testing", "Backend", "Projects"],
+    url: "https://academy.postman.com/",
+    programs: ["csit", "bim", "bca"]
+  },
+  {
+    title: "Canva for Education",
+    type: "tool",
+    icon: "tool",
+    description: "Create presentations, posters, reports, CVs, and social graphics quickly with free design templates.",
+    tags: ["Design", "Presentation", "CV", "Productivity"],
+    url: "https://www.canva.com/education/",
+    programs: ["csit", "bim", "bca"]
+  },
+  {
+    title: "Nepal Open University OER",
+    type: "website",
+    icon: "web",
+    description: "Open educational resources from Nepal Open University for local academic support and reference material.",
+    tags: ["Nepal", "OER", "Study Material"],
+    url: "https://nou.edu.np/",
+    programs: ["csit", "bim", "bca"]
+  },
+  {
+    title: "DevDocs",
+    type: "website",
+    icon: "web",
+    description: "Fast offline-capable documentation browser for HTML, CSS, JS, Python, Django, React, Node, and more.",
+    tags: ["Documentation", "Reference", "Offline", "Fast"],
+    url: "https://devdocs.io/",
+    programs: ["csit", "bim", "bca"]
+  },
+  {
+    title: "Kaggle Learn",
+    type: "practice",
+    icon: "practice",
+    description: "Short free micro-courses on Python, pandas, SQL, ML, data visualization, and competitions.",
+    tags: ["Data Science", "Python", "SQL", "ML"],
+    url: "https://www.kaggle.com/learn",
+    programs: ["csit", "bim"]
+  },
+  {
+    title: "TryHackMe Free Rooms",
+    type: "practice",
+    icon: "practice",
+    description: "Hands-on cybersecurity labs and beginner paths with many free rooms for networking and security practice.",
+    tags: ["Security", "Networking", "Labs", "Hands-on"],
+    url: "https://tryhackme.com/",
+    programs: ["csit", "bca"]
+  },
+  {
+    title: "Tech Interview Handbook",
+    type: "github",
+    icon: "github",
+    description: "Practical interview preparation guide with DSA patterns, behavioral questions, resume tips, and checklists.",
+    tags: ["Interview", "DSA", "Resume", "Career"],
+    url: "https://github.com/yangshun/tech-interview-handbook",
+    programs: ["csit", "bim", "bca"]
+  },
+  {
+    title: "papers-we-love",
+    type: "github",
+    icon: "github",
+    description: "Classic CS papers with community explanations — great for curious students who want deeper computer science context.",
+    tags: ["Research", "CS Theory", "Advanced", "Reading"],
+    url: "https://github.com/papers-we-love/papers-we-love",
+    programs: ["csit"]
   }
 ];
 
@@ -800,6 +908,9 @@ function toggleCategory(el) {
 let activeFilter = 'all';
 let activeProgram = 'all';
 let searchQuery = '';
+let showBookmarksOnly = false;
+const bookmarkKey = 'itStudyHubBookmarks';
+let savedBookmarks = JSON.parse(localStorage.getItem(bookmarkKey) || '[]');
 
 // ===== DARK MODE =====
 const themeToggle = document.getElementById('themeToggle');
@@ -826,9 +937,10 @@ function renderResources() {
   const filtered = resources.filter(r => {
     const matchFilter = activeFilter === 'all' || r.type === activeFilter;
     const matchProgram = activeProgram === 'all' || r.programs.includes(activeProgram);
+    const matchBookmark = !showBookmarksOnly || savedBookmarks.includes(r.url);
     const q = searchQuery.toLowerCase();
     const matchSearch = !q || r.title.toLowerCase().includes(q) || r.description.toLowerCase().includes(q) || r.tags.some(t => t.toLowerCase().includes(q));
-    return matchFilter && matchProgram && matchSearch;
+    return matchFilter && matchProgram && matchBookmark && matchSearch;
   });
 
   if (filtered.length === 0) {
@@ -839,7 +951,7 @@ function renderResources() {
 
   noResults.style.display = 'none';
   grid.innerHTML = filtered.map(r => `
-    <div class="resource-card">
+    <div class="resource-card" data-url="${r.url}">
       <div class="resource-header">
         <div class="resource-icon icon-${getIconClass(r.type)}">
           ${r.type === 'youtube' ? '▶' : r.type === 'website' ? '🌐' : r.type === 'ebook' ? '📖' : r.type === 'practice' ? '⚡' : r.type === 'tool' ? '🔧' : r.type === 'github' ? '⭐' : '🎓'}
@@ -848,6 +960,7 @@ function renderResources() {
           <h3>${r.title}</h3>
           <span class="resource-type">${r.type}</span>
         </div>
+        <button class="bookmark-btn${savedBookmarks.includes(r.url) ? ' saved' : ''}" data-bookmark="${r.url}" type="button" aria-label="Save ${r.title}">★</button>
       </div>
       <p>${r.description}</p>
       <div class="resource-tags">
@@ -863,10 +976,12 @@ function renderResources() {
 
 // ===== FILTERS =====
 document.getElementById('filterTags').addEventListener('click', e => {
-  if (!e.target.classList.contains('filter-tag')) return;
+  if (!e.target.classList.contains('filter-tag') || !e.target.dataset.filter) return;
   document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
   e.target.classList.add('active');
   activeFilter = e.target.dataset.filter;
+  showBookmarksOnly = false;
+  document.getElementById('bookmarksOnlyBtn')?.classList.remove('active');
   renderResources();
 });
 
@@ -934,7 +1049,8 @@ const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
 mobileMenuBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
+  const isOpen = mobileMenu.classList.toggle('open');
+  mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
 });
 
 // ===== MOBILE MENU LINKS =====
@@ -947,6 +1063,7 @@ document.getElementById('mobileMenu').addEventListener('click', e => {
   const goto = link.dataset.mobileGoto;
 
   mobileMenu.classList.remove('open');
+  mobileMenuBtn.setAttribute('aria-expanded', 'false');
 
   if (goto === 'apps') {
     document.getElementById('apps').scrollIntoView({ behavior: 'smooth' });
@@ -990,5 +1107,370 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// ===== CSIT SEMESTER LEARNING PATHS =====
+const materialTypeLabels = {
+  youtube: 'YouTube Videos',
+  ebooksNotes: 'E-books and Notes',
+  tools: 'Useful Tools'
+};
+
+const csitData = {
+  '1st Semester': {
+    focusPlan: [
+      'Build strong basics in C programming, digital logic, mathematics, physics, and IT fundamentals because later semesters depend on them.',
+      'Practice C programs by hand first, then run them in a compiler. Focus on loops, arrays, functions, pointers, and file handling.',
+      'For theory subjects, make short definition sheets and draw diagrams for gates, number systems, networks, and computer generations.',
+      'Do weekly numerical practice for Mathematics I and Physics instead of waiting for exam week.',
+      'Avoid copying lab reports blindly; understand input, process, output, and explain your own code.'
+    ],
+    materials: {
+      youtube: [
+        { subject: 'Introduction to IT', title: 'Neso Academy: Computer Fundamentals', url: 'https://www.youtube.com/@nesoacademy/search?query=computer%20fundamentals', description: 'Clear English playlists for basic computer and IT concepts.' },
+        { subject: 'C Programming', title: 'CodeWithHarry C Language Course', url: 'https://www.youtube.com/@CodeWithHarry/search?query=c%20language', description: 'Beginner-friendly Hindi C programming lessons with examples.' },
+        { subject: 'Digital Logic', title: 'Gate Smashers Digital Logic', url: 'https://www.youtube.com/@GateSmashers/search?query=digital%20logic', description: 'Good for number systems, gates, K-map, and Boolean algebra.' },
+        { subject: 'Mathematics I', title: 'Khan Academy Calculus', url: 'https://www.khanacademy.org/math/calculus-1', description: 'Free structured calculus lessons and practice.' },
+        { subject: 'Physics', title: 'The Organic Chemistry Tutor Physics', url: 'https://www.youtube.com/@TheOrganicChemistryTutor/search?query=physics', description: 'Step-by-step physics problem explanations.' }
+      ],
+      ebooksNotes: [
+        { subject: 'Introduction to IT', title: 'LibreTexts Computer Science', url: 'https://eng.libretexts.org/Bookshelves/Computer_Science', description: 'Free open textbooks for computing foundations.' },
+        { subject: 'C Programming', title: 'Programiz C Tutorial', url: 'https://www.programiz.com/c-programming', description: 'Simple notes, examples, and explanations for C.' },
+        { subject: 'Digital Logic', title: 'Digital Circuits - TutorialsPoint', url: 'https://www.tutorialspoint.com/digital_circuits/index.htm', description: 'Readable notes for gates, combinational, and sequential circuits.' },
+        { subject: 'Mathematics I', title: 'OpenStax Calculus Volume 1', url: 'https://openstax.org/details/books/calculus-volume-1', description: 'Legal free calculus textbook with examples.' },
+        { subject: 'Physics', title: 'OpenStax University Physics', url: 'https://openstax.org/details/books/university-physics-volume-1', description: 'Free physics textbook for university-level concepts.' }
+      ],
+      tools: [
+        { subject: 'Introduction to IT', title: 'GCFGlobal Computer Basics', url: 'https://edu.gcfglobal.org/en/computerbasics/', description: 'Interactive beginner-friendly computer basics.' },
+        { subject: 'C Programming', title: 'OnlineGDB C Compiler', url: 'https://www.onlinegdb.com/online_c_compiler', description: 'Run and debug C code directly in the browser.' },
+        { subject: 'Digital Logic', title: 'CircuitVerse', url: 'https://circuitverse.org/simulator', description: 'Build and simulate logic circuits visually.' },
+        { subject: 'Mathematics I', title: 'Desmos Graphing Calculator', url: 'https://www.desmos.com/calculator', description: 'Visualize functions, limits, and graphs.' },
+        { subject: 'Physics', title: 'PhET Simulations', url: 'https://phet.colorado.edu/', description: 'Interactive physics simulations for core concepts.' }
+      ]
+    }
+  },
+  '2nd Semester': {
+    focusPlan: [
+      'Focus on object-oriented programming and discrete structures because they directly support DSA, software engineering, and algorithms.',
+      'Write Java or C++ OOP examples for class, object, inheritance, polymorphism, exception handling, and file handling.',
+      'Practice discrete math proofs, relations, functions, recurrence, and graph basics with many small problems.',
+      'For microprocessor, draw pin diagrams, architecture blocks, instruction formats, and timing concepts repeatedly.',
+      'Avoid only memorizing code; explain why each OOP concept is useful in real software.'
+    ],
+    materials: {
+      youtube: [
+        { subject: 'Discrete Structure', title: 'TrevTutor Discrete Math', url: 'https://www.youtube.com/@TrevTutor/search?query=discrete%20math', description: 'Clear discrete mathematics explanations in short lessons.' },
+        { subject: 'Object Oriented Programming', title: 'Telusko OOP Java', url: 'https://www.youtube.com/@Telusko/search?query=object%20oriented%20programming%20java', description: 'Practical OOP explanations with Java examples.' },
+        { subject: 'Microprocessor', title: 'Neso Academy Microprocessor 8085', url: 'https://www.youtube.com/@nesoacademy/search?query=8085%20microprocessor', description: 'Strong playlist for 8085 architecture and instructions.' },
+        { subject: 'Mathematics II', title: 'Khan Academy Multivariable Calculus', url: 'https://www.khanacademy.org/math/multivariable-calculus', description: 'Helpful for advanced calculus topics.' },
+        { subject: 'Statistics I', title: 'StatQuest Statistics Fundamentals', url: 'https://www.youtube.com/@statquest/search?query=statistics%20fundamentals', description: 'Simple explanations of probability and statistics concepts.' }
+      ],
+      ebooksNotes: [
+        { subject: 'Discrete Structure', title: 'Discrete Mathematics: An Open Introduction', url: 'https://discrete.openmathbooks.org/dmoi3.html', description: 'Free open textbook with exercises.' },
+        { subject: 'Object Oriented Programming', title: 'Java Notes by Eck', url: 'https://math.hws.edu/javanotes/', description: 'Free Java/OOP textbook available online.' },
+        { subject: 'Microprocessor', title: 'GeeksforGeeks Microprocessor Tutorial', url: 'https://www.geeksforgeeks.org/computer-organization-architecture/microprocessor-tutorials/', description: 'Topic-wise notes for microprocessor basics.' },
+        { subject: 'Mathematics II', title: 'OpenStax Calculus Volume 2', url: 'https://openstax.org/details/books/calculus-volume-2', description: 'Free calculus textbook for integration and series topics.' },
+        { subject: 'Statistics I', title: 'OpenIntro Statistics', url: 'https://www.openintro.org/book/os/', description: 'Free statistics book with examples.' }
+      ],
+      tools: [
+        { subject: 'Discrete Structure', title: 'WolframAlpha', url: 'https://www.wolframalpha.com/', description: 'Check sets, graphs, relations, equations, and probability results.' },
+        { subject: 'Object Oriented Programming', title: 'JDoodle Java Compiler', url: 'https://www.jdoodle.com/online-java-compiler/', description: 'Quick online Java compiler for OOP practice.' },
+        { subject: 'Microprocessor', title: '8085 Simulator', url: 'https://www.sim8085.com/', description: 'Write and test 8085 assembly programs online.' },
+        { subject: 'Mathematics II', title: 'GeoGebra 3D Calculator', url: 'https://www.geogebra.org/3d', description: 'Visualize vectors, planes, and 3D graphs.' },
+        { subject: 'Statistics I', title: 'StatCrunch Free Applets', url: 'https://www.statcrunch.com/applets/', description: 'Interactive statistics applets for probability and distributions.' }
+      ]
+    }
+  },
+  '3rd Semester': {
+    focusPlan: [
+      'Give maximum practical time to Data Structures and Algorithms; it helps exams, projects, and internships.',
+      'For numerical methods, write formulas, solve hand examples, then implement algorithms in code.',
+      'Computer architecture needs diagrams: CPU, memory hierarchy, instruction cycle, pipelining, and I/O organization.',
+      'Computer graphics becomes easier when you practice transformations and draw algorithms visually.',
+      'Avoid skipping lab work; DSA and graphics concepts become clear only after implementation.'
+    ],
+    materials: {
+      youtube: [
+        { subject: 'Data Structures and Algorithms', title: 'Jenny\'s Lectures DSA', url: 'https://www.youtube.com/@JennyslecturesCSIT/search?query=data%20structures', description: 'Student-friendly DSA explanations with diagrams.' },
+        { subject: 'Numerical Method', title: 'Dr. Gajendra Purohit Numerical Methods', url: 'https://www.youtube.com/@gajendrapurohit/search?query=numerical%20methods', description: 'Clear numerical method problem solving in Hindi.' },
+        { subject: 'Computer Architecture', title: 'Neso Academy Computer Organization', url: 'https://www.youtube.com/@nesoacademy/search?query=computer%20organization', description: 'Good for architecture diagrams and concepts.' },
+        { subject: 'Computer Graphics', title: 'Neso Academy Computer Graphics', url: 'https://www.youtube.com/@nesoacademy/search?query=computer%20graphics', description: 'Covers graphics algorithms and transformations.' },
+        { subject: 'Statistics II', title: 'StatQuest Hypothesis Testing', url: 'https://www.youtube.com/@statquest/search?query=hypothesis%20testing', description: 'Easy explanations for inference and statistical testing.' }
+      ],
+      ebooksNotes: [
+        { subject: 'Data Structures and Algorithms', title: 'Open Data Structures', url: 'https://opendatastructures.org/', description: 'Free data structures book with code-based explanations.' },
+        { subject: 'Numerical Method', title: 'Numerical Methods with Python', url: 'https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html', description: 'Free online book connecting methods with code.' },
+        { subject: 'Computer Architecture', title: 'Computer Organization and Design Resources', url: 'https://pages.cs.wisc.edu/~remzi/Classes/354/Fall2012/Handouts/', description: 'Public course handouts for architecture concepts.' },
+        { subject: 'Computer Graphics', title: 'Scratchapixel Computer Graphics', url: 'https://www.scratchapixel.com/', description: 'Free graphics learning material with visual explanations.' },
+        { subject: 'Statistics II', title: 'OpenIntro Statistics', url: 'https://www.openintro.org/book/os/', description: 'Free statistics reference for inference and regression.' }
+      ],
+      tools: [
+        { subject: 'Data Structures and Algorithms', title: 'VisuAlgo', url: 'https://visualgo.net/en', description: 'Visualizes sorting, trees, graphs, hashing, and more.' },
+        { subject: 'Numerical Method', title: 'Google Colab', url: 'https://colab.research.google.com/', description: 'Implement numerical methods in Python notebooks.' },
+        { subject: 'Computer Architecture', title: 'Ripes Simulator', url: 'https://ripes.me/', description: 'Visual RISC-V processor and pipeline simulator.' },
+        { subject: 'Computer Graphics', title: 'WebGL Fundamentals', url: 'https://webglfundamentals.org/', description: 'Interactive browser-based graphics learning.' },
+        { subject: 'Statistics II', title: 'Seeing Theory', url: 'https://seeing-theory.brown.edu/', description: 'Beautiful interactive probability and statistics visuals.' }
+      ]
+    }
+  },
+  '4th Semester': {
+    focusPlan: [
+      'Prioritize DBMS, Operating Systems, Computer Networks, Theory of Computation, and AI with separate theory and practical notes.',
+      'For DBMS, practice ER diagrams, normalization, SQL queries, transactions, and relational algebra regularly.',
+      'For OS and Networks, draw diagrams and compare concepts like scheduling, deadlock, paging, routing, TCP/IP, and OSI layers.',
+      'For TOC, solve automata, grammar, PDA, and Turing machine problems step-by-step instead of only reading theory.',
+      'Build a small database-backed project and revise AI search basics with examples before exams.'
+    ],
+    materials: {
+      youtube: [
+        { subject: 'Database Management System', title: 'Gate Smashers DBMS', url: 'https://www.youtube.com/@GateSmashers/search?query=dbms', description: 'Excellent DBMS explanations for ERD, normalization, SQL, and transactions.' },
+        { subject: 'Operating System', title: 'Neso Academy Operating System', url: 'https://www.youtube.com/@nesoacademy/search?query=operating%20system', description: 'Structured OS videos with diagrams and examples.' },
+        { subject: 'Computer Networks', title: 'Gate Smashers Computer Networks', url: 'https://www.youtube.com/@GateSmashers/search?query=computer%20networks', description: 'Good for OSI, TCP/IP, routing, and exam-style explanations.' },
+        { subject: 'Theory of Computation', title: 'Neso Academy Theory of Computation', url: 'https://www.youtube.com/@nesoacademy/search?query=theory%20of%20computation', description: 'Clear videos for automata, grammar, PDA, and Turing machines.' },
+        { subject: 'Artificial Intelligence', title: 'Gate Smashers Artificial Intelligence', url: 'https://www.youtube.com/@GateSmashers/search?query=artificial%20intelligence', description: 'Useful for AI search, knowledge representation, and basics.' }
+      ],
+      ebooksNotes: [
+        { subject: 'Database Management System', title: 'Database System Concepts Slides', url: 'https://www.db-book.com/slides-dir/index.html', description: 'Official free slides from the classic DBMS textbook.' },
+        { subject: 'Operating System', title: 'Operating Systems: Three Easy Pieces', url: 'https://pages.cs.wisc.edu/~remzi/OSTEP/', description: 'Free trusted OS textbook for processes, memory, and file systems.' },
+        { subject: 'Computer Networks', title: 'Computer Networking: A Top-Down Approach Resources', url: 'https://gaia.cs.umass.edu/kurose_ross/index.php', description: 'Free slides, labs, and learning material for networking.' },
+        { subject: 'Theory of Computation', title: 'Automata Theory - Stanford Lagunita Notes Archive', url: 'https://web.stanford.edu/class/archive/cs/cs103/cs103.1156/', description: 'Public notes and handouts for logic, automata, and computation foundations.' },
+        { subject: 'Artificial Intelligence', title: 'AIMA Resources', url: 'https://aima.cs.berkeley.edu/', description: 'Official resources for Artificial Intelligence: A Modern Approach.' }
+      ],
+      tools: [
+        { subject: 'Database Management System', title: 'SQLZoo', url: 'https://sqlzoo.net/', description: 'Interactive SQL practice from basic SELECT to JOINs.' },
+        { subject: 'Operating System', title: 'OS Scheduling Simulator', url: 'https://boonsuen.com/process-scheduling-solver', description: 'Practice CPU scheduling and compare waiting/turnaround time.' },
+        { subject: 'Computer Networks', title: 'Cisco Packet Tracer', url: 'https://www.netacad.com/courses/packet-tracer', description: 'Free network simulation tool from Cisco Networking Academy.' },
+        { subject: 'Theory of Computation', title: 'JFLAP', url: 'https://www.jflap.org/', description: 'Create and test automata, grammars, PDA, and Turing machines.' },
+        { subject: 'Artificial Intelligence', title: 'AIMA Python Code', url: 'https://github.com/aimacode/aima-python', description: 'Python implementations of classic AI algorithms.' }
+      ]
+    }
+  },
+  '5th Semester': {
+    focusPlan: [
+      'This semester is career-important: combine algorithms, web technology, SAD, cryptography, and simulation with projects.',
+      'Practice algorithm design patterns and complexity analysis until you can explain why an approach is efficient.',
+      'For web technology, build real pages with forms, API calls, validation, and responsive design.',
+      'Use diagrams heavily for SAD: DFD, ERD, UML, use case, activity, and sequence diagrams.',
+      'Avoid treating cryptography as only formulas; understand use cases, attacks, keys, hashing, and protocols.'
+    ],
+    materials: {
+      youtube: [
+        { subject: 'Design and Analysis of Algorithms', title: 'Abdul Bari Algorithms', url: 'https://www.youtube.com/@abdul_bari/search?query=algorithm', description: 'Classic algorithm explanations with complexity analysis.' },
+        { subject: 'System Analysis and Design', title: 'Education 4u SAD', url: 'https://www.youtube.com/@Education4u/search?query=system%20analysis%20and%20design', description: 'Useful for software diagrams and system development concepts.' },
+        { subject: 'Cryptography', title: 'Computerphile Cryptography', url: 'https://www.youtube.com/@Computerphile/search?query=cryptography', description: 'Intuitive explanations of security and cryptographic ideas.' },
+        { subject: 'Simulation and Modeling', title: 'Neso Academy Simulation and Modeling', url: 'https://www.youtube.com/@nesoacademy/search?query=simulation%20modeling', description: 'Good conceptual videos for simulation basics.' },
+        { subject: 'Web Technology', title: 'Traversy Media Web Development', url: 'https://www.youtube.com/@TraversyMedia/search?query=web%20development', description: 'Project-based HTML, CSS, JavaScript, and backend lessons.' }
+      ],
+      ebooksNotes: [
+        { subject: 'Design and Analysis of Algorithms', title: 'Algorithms by Jeff Erickson', url: 'https://jeffe.cs.illinois.edu/teaching/algorithms/', description: 'Free algorithms book and notes.' },
+        { subject: 'System Analysis and Design', title: 'SEBoK System Design Knowledge', url: 'https://www.sebokwiki.org/wiki/System_Design', description: 'Trusted systems engineering and design reference.' },
+        { subject: 'Cryptography', title: 'Crypto 101', url: 'https://www.crypto101.io/', description: 'Free introductory cryptography book.' },
+        { subject: 'Simulation and Modeling', title: 'SimPy Documentation', url: 'https://simpy.readthedocs.io/', description: 'Free simulation modeling docs with Python examples.' },
+        { subject: 'Web Technology', title: 'MDN Web Docs', url: 'https://developer.mozilla.org/', description: 'Best free reference for HTML, CSS, JavaScript, and web APIs.' }
+      ],
+      tools: [
+        { subject: 'Design and Analysis of Algorithms', title: 'Algorithm Visualizer', url: 'https://algorithm-visualizer.org/', description: 'Visualize algorithms step by step.' },
+        { subject: 'System Analysis and Design', title: 'diagrams.net', url: 'https://app.diagrams.net/', description: 'Free tool for UML, ERD, DFD, and flowcharts.' },
+        { subject: 'Cryptography', title: 'CyberChef', url: 'https://gchq.github.io/CyberChef/', description: 'Practice encoding, hashing, encryption, and data transforms.' },
+        { subject: 'Simulation and Modeling', title: 'NetLogo Web', url: 'https://www.netlogoweb.org/', description: 'Browser-based agent simulation environment.' },
+        { subject: 'Web Technology', title: 'CodePen', url: 'https://codepen.io/', description: 'Quickly test and share frontend code snippets.' }
+      ]
+    }
+  },
+  '6th Semester': {
+    focusPlan: [
+      'Connect theory with real software: compiler, software engineering, e-governance, network-centric apps, and technical writing.',
+      'For compiler design, practice lexical analysis, parsing, syntax trees, and grammar examples regularly.',
+      'For software engineering, learn requirement analysis, testing, design patterns, and documentation with real project examples.',
+      'Improve technical writing by preparing clean reports, citations, diagrams, abstracts, and presentations.',
+      'Avoid weak documentation; final-year and internship work becomes easier if you learn professional reporting now.'
+    ],
+    materials: {
+      youtube: [
+        { subject: 'Software Engineering', title: 'Neso Academy Software Engineering', url: 'https://www.youtube.com/@nesoacademy/search?query=software%20engineering', description: 'Clear videos for SDLC, testing, requirements, and models.' },
+        { subject: 'Compiler Design', title: 'Gate Smashers Compiler Design', url: 'https://www.youtube.com/@GateSmashers/search?query=compiler%20design', description: 'Useful for lexical analysis, parsing, and compiler phases.' },
+        { subject: 'E-Governance', title: 'E-Governance Lectures', url: 'https://www.youtube.com/results?search_query=e+governance+lectures', description: 'Search results with public lectures on e-governance concepts.' },
+        { subject: 'NET Centric Computing', title: 'REST API Full Course', url: 'https://www.youtube.com/@freecodecamp/search?query=rest%20api', description: 'Practical API and network-centric application learning.' },
+        { subject: 'Technical Writing', title: 'Technical Writing Course', url: 'https://www.youtube.com/results?search_query=technical+writing+course+for+students', description: 'Helpful lessons for reports, docs, and academic writing.' }
+      ],
+      ebooksNotes: [
+        { subject: 'Software Engineering', title: 'SWEBOK Guide', url: 'https://www.computer.org/education/bodies-of-knowledge/software-engineering', description: 'IEEE Computer Society reference for software engineering knowledge areas.' },
+        { subject: 'Compiler Design', title: 'Crafting Interpreters', url: 'https://craftinginterpreters.com/', description: 'Free online book for understanding interpreters and language implementation.' },
+        { subject: 'E-Governance', title: 'UN E-Government Knowledgebase', url: 'https://publicadministration.un.org/egovkb/en-us/', description: 'Trusted official resources and reports on e-government.' },
+        { subject: 'NET Centric Computing', title: 'REST API Tutorial', url: 'https://restfulapi.net/', description: 'Free reference for REST principles and API design.' },
+        { subject: 'Technical Writing', title: 'Google Technical Writing Courses', url: 'https://developers.google.com/tech-writing', description: 'Free practical writing course from Google.' }
+      ],
+      tools: [
+        { subject: 'Software Engineering', title: 'GitHub Projects', url: 'https://github.com/features/issues', description: 'Track software tasks, issues, and project work.' },
+        { subject: 'Compiler Design', title: 'Regex101', url: 'https://regex101.com/', description: 'Practice regular expressions for lexical analysis concepts.' },
+        { subject: 'E-Governance', title: 'Google Public Data Explorer', url: 'https://www.google.com/publicdata/directory', description: 'Explore public datasets and governance-related indicators.' },
+        { subject: 'NET Centric Computing', title: 'Postman', url: 'https://www.postman.com/', description: 'Test APIs and document network-centric services.' },
+        { subject: 'Technical Writing', title: 'ZoteroBib', url: 'https://zbib.org/', description: 'Create citations quickly for reports and research writing.' }
+      ]
+    }
+  },
+  '7th Semester': {
+    focusPlan: [
+      'Start thinking like a professional: advanced Java, data warehousing/mining, management, electives, and project planning matter a lot.',
+      'For Advanced Java, build GUI, JDBC, servlet/JSP, or Spring-style small applications depending on your syllabus/lab.',
+      'For data warehousing and mining, focus on ETL, OLAP, classification, clustering, association rules, and evaluation metrics.',
+      'Use project work to solve a real problem; prepare proposal, scope, timeline, database design, and GitHub repository early.',
+      'Avoid last-minute project ideas; weak planning creates stress in final year and internship.'
+    ],
+    materials: {
+      youtube: [
+        { subject: 'Advanced Java', title: 'Java Full Course - freeCodeCamp', url: 'https://www.youtube.com/@freecodecamp/search?query=java%20full%20course', description: 'Complete Java learning resources with practical examples.' },
+        { subject: 'Data Warehousing and Mining', title: 'DWDM Gate Smashers', url: 'https://www.youtube.com/@GateSmashers/search?query=data%20warehousing%20data%20mining', description: 'Good exam-oriented explanations for warehousing and mining.' },
+        { subject: 'Principles of Management', title: 'Principles of Management Lectures', url: 'https://www.youtube.com/results?search_query=principles+of+management+lectures', description: 'Public lectures for management basics and functions.' },
+        { subject: 'Project Work', title: 'How to Plan a Software Project', url: 'https://www.youtube.com/results?search_query=software+project+planning+for+students', description: 'Useful guidance for planning and presenting projects.' },
+        { subject: 'Elective / Specialization', title: 'MIT OpenCourseWare CS', url: 'https://www.youtube.com/@mitocw/search?query=computer%20science', description: 'High-quality lectures for advanced CS topics.' }
+      ],
+      ebooksNotes: [
+        { subject: 'Advanced Java', title: 'Oracle Java Tutorials', url: 'https://docs.oracle.com/javase/tutorial/', description: 'Official Java tutorials for language and APIs.' },
+        { subject: 'Data Warehousing and Mining', title: 'Mining of Massive Datasets', url: 'http://www.mmds.org/', description: 'Free book for data mining concepts.' },
+        { subject: 'Principles of Management', title: 'OpenStax Principles of Management', url: 'https://openstax.org/details/books/principles-management', description: 'Free management textbook.' },
+        { subject: 'Project Work', title: 'GitHub Docs: About READMEs', url: 'https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes', description: 'Learn to document projects clearly.' },
+        { subject: 'Elective / Specialization', title: 'OSSU Computer Science', url: 'https://github.com/ossu/computer-science', description: 'Free CS curriculum for deeper study.' }
+      ],
+      tools: [
+        { subject: 'Advanced Java', title: 'JetBrains Academy Java', url: 'https://www.jetbrains.com/academy/', description: 'Project-based Java practice platform.' },
+        { subject: 'Data Warehousing and Mining', title: 'Kaggle', url: 'https://www.kaggle.com/', description: 'Datasets, notebooks, and ML/data mining practice.' },
+        { subject: 'Principles of Management', title: 'Canva Presentations', url: 'https://www.canva.com/presentations/', description: 'Create clean management presentations and reports.' },
+        { subject: 'Project Work', title: 'Trello', url: 'https://trello.com/', description: 'Plan project tasks with simple Kanban boards.' },
+        { subject: 'Elective / Specialization', title: 'roadmap.sh', url: 'https://roadmap.sh/', description: 'Choose a specialization roadmap such as backend, AI, DevOps, or cybersecurity.' }
+      ]
+    }
+  },
+  '8th Semester': {
+    focusPlan: [
+      'Focus on internship, final project, specialization subjects, documentation, presentation, and job readiness.',
+      'Turn your final project into a portfolio piece with live demo, screenshots, README, and clear problem statement.',
+      'Revise core CS subjects for interviews: DSA, DBMS, OS, CN, OOP, web basics, and software engineering.',
+      'Prepare CV, LinkedIn, GitHub, and a simple portfolio website before internship applications.',
+      'Avoid submitting only code; evaluation improves when documentation, testing, UI, deployment, and presentation are strong.'
+    ],
+    materials: {
+      youtube: [
+        { subject: 'Internship Preparation', title: 'Apna College Placement Preparation', url: 'https://www.youtube.com/@ApnaCollegeOfficial/search?query=placement%20preparation', description: 'Hindi guidance for interview and placement preparation.' },
+        { subject: 'Final Year Project', title: 'Project Presentation Tips', url: 'https://www.youtube.com/results?search_query=final+year+project+presentation+computer+science', description: 'Helps with demo, slides, and viva preparation.' },
+        { subject: 'Advanced Database / Elective', title: 'Database Design Course', url: 'https://www.youtube.com/@freecodecamp/search?query=database%20design', description: 'Practical database design and SQL learning.' },
+        { subject: 'Cloud / DevOps Elective', title: 'AWS Cloud Practitioner FreeCodeCamp', url: 'https://www.youtube.com/@freecodecamp/search?query=aws%20cloud%20practitioner', description: 'Free cloud fundamentals useful for modern projects.' },
+        { subject: 'Interview Revision', title: 'CS Interview Prep', url: 'https://www.youtube.com/@NeetCode/search?query=interview', description: 'Good DSA interview explanations and patterns.' }
+      ],
+      ebooksNotes: [
+        { subject: 'Internship Preparation', title: 'Tech Interview Handbook', url: 'https://www.techinterviewhandbook.org/', description: 'Free structured interview, resume, and coding prep guide.' },
+        { subject: 'Final Year Project', title: 'GitHub Docs: Project Documentation', url: 'https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes', description: 'Use for professional README and project documentation.' },
+        { subject: 'Advanced Database / Elective', title: 'PostgreSQL Documentation', url: 'https://www.postgresql.org/docs/', description: 'Official free database documentation.' },
+        { subject: 'Cloud / DevOps Elective', title: 'AWS Skill Builder', url: 'https://skillbuilder.aws/', description: 'Free official cloud learning resources.' },
+        { subject: 'Interview Revision', title: 'Coding Interview University', url: 'https://github.com/jwasham/coding-interview-university', description: 'Complete free CS interview study plan.' }
+      ],
+      tools: [
+        { subject: 'Internship Preparation', title: 'LinkedIn', url: 'https://www.linkedin.com/', description: 'Build profile, search internships, and connect professionally.' },
+        { subject: 'Final Year Project', title: 'GitHub Pages', url: 'https://pages.github.com/', description: 'Host portfolio or project documentation for free.' },
+        { subject: 'Advanced Database / Elective', title: 'DB Fiddle', url: 'https://www.db-fiddle.com/', description: 'Test SQL queries and schemas online.' },
+        { subject: 'Cloud / DevOps Elective', title: 'Render Free Hosting', url: 'https://render.com/', description: 'Deploy small web apps and APIs on a free tier.' },
+        { subject: 'Interview Revision', title: 'LeetCode', url: 'https://leetcode.com/', description: 'Practice DSA questions for interviews.' }
+      ]
+    }
+  }
+};
+
+let selectedSemester = '4th Semester';
+let selectedMaterialType = 'youtube';
+
+function updateHeroStats() {
+  document.getElementById('resourceCount').textContent = `${resources.length}+`;
+  document.getElementById('programCount').textContent = '3';
+  document.getElementById('categoryCount').textContent = new Set(resources.map(r => r.type)).size + 2;
+}
+
+function renderCsitSemesterPath() {
+  const panel = document.getElementById('pathPanel');
+  if (!panel) return;
+  const semester = csitData[selectedSemester];
+  const materialItems = semester.materials[selectedMaterialType] || [];
+
+  panel.innerHTML = `
+    <div class="focus-plan-card">
+      <p class="eyebrow">Focus plan</p>
+      <h3>CSIT ${selectedSemester} Focus Plan</h3>
+      <p class="path-intro">Short, practical guidance for studying this semester without confusion.</p>
+      <div class="path-steps">
+        ${semester.focusPlan.map((tip, i) => `<div class="path-step"><strong>${i + 1}</strong><span>${tip}</span></div>`).join('')}
+      </div>
+    </div>
+    <div class="path-materials csit-materials-card">
+      <div class="materials-head">
+        <div>
+          <p class="eyebrow">Recommended materials</p>
+          <h4>${materialTypeLabels[selectedMaterialType]}</h4>
+        </div>
+        <label class="material-select-label" for="materialTypeSelect">Material Type</label>
+        <select id="materialTypeSelect" class="material-select" aria-label="Select material type">
+          <option value="youtube" ${selectedMaterialType === 'youtube' ? 'selected' : ''}>YouTube Videos</option>
+          <option value="ebooksNotes" ${selectedMaterialType === 'ebooksNotes' ? 'selected' : ''}>E-books and Notes</option>
+          <option value="tools" ${selectedMaterialType === 'tools' ? 'selected' : ''}>Useful Tools</option>
+        </select>
+      </div>
+      <div class="materials-list">
+        ${materialItems.map(item => `
+          <article class="material-card">
+            <span class="material-subject">${item.subject}</span>
+            <a href="${item.url}" target="_blank" rel="noopener">${item.title} →</a>
+            <p>${item.description}</p>
+          </article>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  document.getElementById('materialTypeSelect')?.addEventListener('change', e => {
+    selectedMaterialType = e.target.value;
+    renderCsitSemesterPath();
+  });
+}
+
+function setupEnrichedFeatures() {
+  updateHeroStats();
+  renderCsitSemesterPath();
+
+  mobileMenuBtn.setAttribute('aria-expanded', 'false');
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.app-category.open .category-body').forEach(body => {
+      body.style.maxHeight = body.scrollHeight + 'px';
+    });
+  });
+
+  document.getElementById('semesterSelect')?.addEventListener('change', e => {
+    selectedSemester = e.target.value;
+    selectedMaterialType = 'youtube';
+    renderCsitSemesterPath();
+  });
+
+  document.getElementById('resourcesGrid')?.addEventListener('click', e => {
+    const btn = e.target.closest('[data-bookmark]');
+    if (!btn) return;
+    const url = btn.dataset.bookmark;
+    savedBookmarks = savedBookmarks.includes(url) ? savedBookmarks.filter(item => item !== url) : [...savedBookmarks, url];
+    localStorage.setItem(bookmarkKey, JSON.stringify(savedBookmarks));
+    renderResources();
+  });
+
+  document.getElementById('bookmarksOnlyBtn')?.addEventListener('click', e => {
+    showBookmarksOnly = !showBookmarksOnly;
+    e.currentTarget.classList.toggle('active', showBookmarksOnly);
+    renderResources();
+  });
+
+  document.getElementById('randomResourceBtn')?.addEventListener('click', () => {
+    const pool = resources.filter(r => (activeFilter === 'all' || r.type === activeFilter) && (activeProgram === 'all' || r.programs.includes(activeProgram)));
+    const pick = pool[Math.floor(Math.random() * pool.length)] || resources[0];
+    searchQuery = pick.title;
+    document.getElementById('searchInput').value = pick.title;
+    showBookmarksOnly = false;
+    renderResources();
+    setTimeout(() => document.querySelector(`[data-url="${pick.url}"]`)?.classList.add('highlight'), 30);
+    document.getElementById('resources').scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
 // ===== INITIAL RENDER =====
-document.addEventListener('DOMContentLoaded', () => { renderResources(); renderApps(); });
+document.addEventListener('DOMContentLoaded', () => { renderResources(); renderApps(); setupEnrichedFeatures(); });

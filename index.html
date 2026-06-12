@@ -47,9 +47,9 @@
         <a href="#programs" class="btn btn-outline">Explore Programs</a>
       </div>
       <div class="hero-stats">
-        <div class="stat"><span class="stat-number">70+</span><span class="stat-label">Resources</span></div>
-        <div class="stat"><span class="stat-number">3</span><span class="stat-label">Programs</span></div>
-        <div class="stat"><span class="stat-number">9</span><span class="stat-label">Categories</span></div>
+        <div class="stat"><span class="stat-number" id="resourceCount">70+</span><span class="stat-label">Resources</span></div>
+        <div class="stat"><span class="stat-number" id="programCount">3</span><span class="stat-label">Programs</span></div>
+        <div class="stat"><span class="stat-number" id="categoryCount">9</span><span class="stat-label">Categories</span></div>
       </div>
     </div>
     <div class="hero-visual">
@@ -75,7 +75,7 @@
         <button class="filter-tag" data-filter="tool">Tools</button>
         <button class="filter-tag" data-filter="github">GitHub Repos</button>
         <button class="filter-tag" data-filter="course">Free Courses</button>
-        <button class="filter-tag" id="usefulAppsTag">Useful Apps</button>
+        <button class="filter-tag" id="usefulAppsTag" type="button">Useful Apps</button>
       </div>
     </div>
   </section>
@@ -95,11 +95,88 @@
 
   <section class="resources-section">
     <div class="container">
+      <div class="resource-tools">
+        <div>
+          <p class="eyebrow">Smart discovery</p>
+          <h2>Find what to study next</h2>
+          <p>Use filters, search, saved bookmarks, or the random picker when you feel stuck.</p>
+        </div>
+        <div class="resource-tool-actions">
+          <button class="btn btn-outline" id="randomResourceBtn" type="button">🎲 Random resource</button>
+          <button class="btn btn-outline" id="bookmarksOnlyBtn" type="button">🔖 Saved only</button>
+        </div>
+      </div>
       <div class="resources-grid" id="resourcesGrid"></div>
       <div class="no-results" id="noResults" style="display:none;">
         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         <h3>No resources found</h3>
         <p>Try different search terms or filters</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="learning-paths" id="learning-paths">
+    <div class="container">
+      <h2 class="section-title">CSIT Semester Learning Paths</h2>
+      <p class="section-subtitle">Choose your CSIT semester and instantly get a focused study plan plus free materials.</p>
+      <div class="semester-picker-card">
+        <label for="semesterSelect">Select CSIT Semester</label>
+        <select id="semesterSelect" class="semester-select" aria-label="Select CSIT semester">
+          <option value="1st Semester">CSIT 1st Semester</option>
+          <option value="2nd Semester">CSIT 2nd Semester</option>
+          <option value="3rd Semester">CSIT 3rd Semester</option>
+          <option value="4th Semester" selected>CSIT 4th Semester</option>
+          <option value="5th Semester">CSIT 5th Semester</option>
+          <option value="6th Semester">CSIT 6th Semester</option>
+          <option value="7th Semester">CSIT 7th Semester</option>
+          <option value="8th Semester">CSIT 8th Semester</option>
+        </select>
+      </div>
+      <div class="path-panel csit-semester-panel" id="pathPanel"></div>
+    </div>
+  </section>
+
+  <section class="toolkit-section" id="toolkit">
+    <div class="container">
+      <h2 class="section-title">Student Toolkit</h2>
+      <p class="section-subtitle">Materials that help with assignments, exams, projects, and internship preparation.</p>
+      <div class="toolkit-grid">
+        <article class="toolkit-card">
+          <span>📚</span>
+          <h3>Exam Prep Pack</h3>
+          <ul>
+            <li>Make 1-page summaries after each chapter.</li>
+            <li>Practice past questions topic-wise.</li>
+            <li>Revise formulas, definitions, diagrams, and algorithms daily.</li>
+          </ul>
+        </article>
+        <article class="toolkit-card">
+          <span>🧪</span>
+          <h3>Project Starter Ideas</h3>
+          <ul>
+            <li>Library / inventory management system.</li>
+            <li>College notice board with admin panel.</li>
+            <li>Weather, expense tracker, quiz, portfolio, and API dashboard apps.</li>
+          </ul>
+        </article>
+        <article class="toolkit-card">
+          <span>💼</span>
+          <h3>Internship Checklist</h3>
+          <ul>
+            <li>GitHub profile with 3 pinned projects.</li>
+            <li>One-page CV + LinkedIn profile.</li>
+            <li>Portfolio website with live demos and screenshots.</li>
+          </ul>
+        </article>
+        <article class="toolkit-card">
+          <span>🧠</span>
+          <h3>Daily Study Routine</h3>
+          <ul>
+            <li>60 min theory + 60 min coding + 30 min revision.</li>
+            <li>Push code to GitHub every week.</li>
+            <li>Write what you learned in your own words.</li>
+          </ul>
+        </article>
       </div>
     </div>
   </section>
