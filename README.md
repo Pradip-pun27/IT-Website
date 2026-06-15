@@ -1,221 +1,176 @@
-# IT & Computer Science Resources Hub
+# IT Study Hub
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/Pradip-pun27/IT-Website.svg)](https://github.com/Pradip-pun27/IT-Website/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Pradip-pun27/IT-Website.svg)](https://github.com/Pradip-pun27/IT-Website/network)
+A simple, responsive static website that collects useful IT and Computer Science learning resources for students. It includes curated websites, YouTube channels, documentation links, tools, mobile apps, and an **Extra** section for helpful utilities such as PDF tools, image/GIF tools, free/open book libraries, and study resources.
 
-A comprehensive, free-to-access website for discovering and utilizing IT and Computer Science resources. This project aims to make quality learning materials easily accessible to students, professionals, and enthusiasts.
+🌐 **Live Website:** https://learn-it-website.elonmagar6.workers.dev/
 
-🌐 **Live Website**: https://learn-it-website.elonmagar6.workers.dev/
+> Best viewed in dark mode.
 
-> 💡 **Tip**: Dark mode is preferred for the best viewing experience!
+## ✨ Features
 
-## 🌟 Features
+- **109 curated resource cards** for IT/CS learning
+- **38 useful apps/tools** grouped in accordion sections
+- Program filters for **CSIT**, **BIM**, **BCA**, and **Extra**
+- Search and category filtering
+- Extra helpful-sites section for tools and legal/free learning resources
+- Responsive design for desktop and mobile
+- Vanilla HTML, CSS, and JavaScript — no framework required
+- Cloudflare Workers deployment using Wrangler
 
-- **Comprehensive Resource Library** - Curated collection of IT and CS learning materials
-- **User-Friendly Interface** - Clean and intuitive design for easy navigation
-- **Free Access** - No paywalls or restrictions on content
-- **Dark Mode Support** - Easy on the eyes for extended browsing sessions
-- **Responsive Design** - Works seamlessly on desktop, tablet, and mobile devices
-- **Well-Organized Categories** - Resources sorted by topics and difficulty levels
-- **Easy Search & Filter** - Quickly find what you're looking for
+## 📚 Main Sections
+
+The website is organized around these study/resource sections:
+
+- **CSIT** — programming, DSA, databases, OS, AI/ML, cloud, cybersecurity, and academic resources
+- **BIM** — IT, management, business, productivity, analytics, and web resources
+- **BCA** — programming, web development, design, software engineering, and career resources
+- **Extra** — additional helpful websites such as PDF tools, image/GIF utilities, open e-book libraries, notes, and general student tools
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: JavaScript (66.5%), CSS (23%), HTML (10.5%)
-- **Architecture**: Pure vanilla JavaScript for lightweight performance
-- **Styling**: Custom CSS with responsive design principles
-- **Markup**: Semantic HTML5
-- **Hosting**: Cloudflare Workers
+- **HTML5** — page structure
+- **CSS3** — styling, responsiveness, dark UI
+- **Vanilla JavaScript** — resource data, filtering, search, navigation, accordion behavior
+- **Cloudflare Workers + Wrangler** — hosting/deployment
 
-## 📋 Project Structure
+## 📁 Current Project Structure
 
-```
+```text
 IT-Website/
-├── index.html           # Main entry point
-├── css/                 # Stylesheets
-│   └── style.css       # Main stylesheet
-├── js/                 # JavaScript files
-│   └── script.js       # Main script logic
-├── assets/             # Images, icons, and media files
-└── README.md          # This file
+├── index.html          # Source HTML file
+├── styles.css          # Source CSS file
+├── script.js           # Source JS/resource data file
+├── public/             # Files served by Cloudflare Workers
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+├── wrangler.jsonc      # Cloudflare Workers/Wrangler deployment config
+├── .assetsignore       # Extra deploy-safety ignore file
+├── .gitignore          # Local git ignore rules
+└── README.md           # Project documentation
 ```
 
-## 🚀 Getting Started
+### Important note about `public/`
 
-### Prerequisites
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- Basic knowledge of HTML/CSS/JavaScript (for contributions)
+Cloudflare Workers is configured to deploy only the `public/` folder:
 
-### Installation
+```jsonc
+"assets": {
+  "directory": "public"
+}
+```
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Pradip-pun27/IT-Website.git
-   ```
+This avoids accidentally deploying internal folders like `.git/` or `.wrangler/`.
 
-2. **Navigate to the project directory**
-   ```bash
-   cd IT-Website
-   ```
+If you edit the root files:
 
-3. **Open in your browser**
-   - Simply double-click `index.html` or
-   - Use a local server:
-     ```bash
-     # Using Python 3
-     python -m http.server 8000
-     
-     # Using Python 2
-     python -m SimpleHTTPServer 8000
-     
-     # Using Node.js (with http-server package)
-     npx http-server
-     ```
+```text
+index.html
+styles.css
+script.js
+```
 
-4. **Access the website**
-   - Open your browser and navigate to `http://localhost:8000`
+then copy/sync the updated versions into `public/` before deploying, because the live Workers site uses the files inside `public/`.
 
-## 📚 Available Resources
+## 🚀 Run Locally
 
-The website provides access to resources across various IT and CS domains:
+From the project folder:
 
-- Programming Languages
-- Web Development
-- Data Structures & Algorithms
-- Database Management
-- Cloud Computing
-- Cybersecurity
-- Software Engineering
-- Mobile Development
-- And much more!
+```bash
+cd IT-Website
+python3 -m http.server 8000
+```
 
-## 🎨 Customization
+Then open:
 
-### Enabling Dark Mode
-Dark mode is the recommended viewing experience. To enable or customize:
-1. Check your browser settings
-2. The site will automatically respect your system preference
-3. You can toggle dark mode directly in the settings menu
+```text
+http://localhost:8000
+```
 
-### Modifying Styles
-- Edit `css/style.css` for visual changes
-- Maintain responsive breakpoints for mobile compatibility
-- Test changes across different screen sizes
+You can also open `index.html` directly in a browser, but using a local server is cleaner.
+
+## ✅ Basic Checks
+
+Check JavaScript syntax:
+
+```bash
+node --check script.js
+node --check public/script.js
+```
+
+Run a Cloudflare dry-run deploy check:
+
+```bash
+npx wrangler deploy --dry-run
+```
+
+## ☁️ Deploy to Cloudflare Workers
+
+Deploy the current `public/` website to Cloudflare Workers:
+
+```bash
+npx wrangler deploy
+```
+
+The deployment config is in `wrangler.jsonc`.
+
+Current live URL:
+
+```text
+https://learn-it-website.elonmagar6.workers.dev/
+```
+
+## 🧩 Updating Resources
+
+Most website content/resources are stored in:
+
+```text
+script.js
+public/script.js
+```
+
+When adding new resources:
+
+1. Add the resource with a clear title, description, tags, URL, and program list.
+2. Avoid duplicate URLs.
+3. Prefer legal, free, official, or open-access resources.
+4. Do not add piracy/copyright-infringing download sites.
+5. After editing, run:
+
+```bash
+node --check script.js
+node --check public/script.js
+```
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Here's how you can help:
+Contributions are welcome.
 
-1. **Fork the repository**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/IT-Website.git
-   ```
-
-2. **Create a feature branch**
+1. Fork the repository
+2. Create a branch:
    ```bash
    git checkout -b feature/your-feature-name
    ```
-
-3. **Make your changes**
-   - Maintain code consistency with existing style
-   - Ensure responsive design compatibility
-   - Add meaningful comments where necessary
-   - Test in both light and dark modes
-
-4. **Commit your changes**
+3. Make your changes
+4. Test locally
+5. Commit with a clear message:
    ```bash
-   git commit -m "Add: description of your changes"
+   git commit -m "docs: update README"
    ```
-
-5. **Push to your fork**
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-6. **Submit a Pull Request**
-   - Provide a clear description of your changes
-   - Link any relevant issues
-   - Include screenshots if applicable
-
-## 📝 Contribution Guidelines
-
-- Follow the existing code style and structure
-- Ensure all code is responsive and works across browsers
-- Test your changes in both light and dark modes
-- Keep commits atomic and with clear messages
-- Add comments for complex logic
-- Update documentation as needed
-- Optimize performance and minimize bundle size
-
-## 🐛 Reporting Issues
-
-Found a bug or have a suggestion? Please open an issue on GitHub:
-
-1. Go to [Issues](https://github.com/Pradip-pun27/IT-Website/issues)
-2. Click "New Issue"
-3. Provide a clear title and description
-4. Include screenshots if applicable
-5. Specify your browser and device information
-6. Submit the issue
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+6. Push and open a pull request
 
 ## 👨‍💻 Author
 
 **Pradip Pun**
+
 - GitHub: [@Pradip-pun27](https://github.com/Pradip-pun27)
-- Project: [IT-Website](https://github.com/Pradip-pun27/IT-Website)
+- Repository: https://github.com/Pradip-pun27/IT-Website
+- Live site: https://learn-it-website.elonmagar6.workers.dev/
 
-## 🙏 Acknowledgments
+## 📄 License
 
-- Thanks to all contributors who have helped improve this project
-- Inspired by the need for free, accessible learning resources
-- Built with passion for the IT and CS community
-- Hosted on Cloudflare Workers for global accessibility
-
-## 📞 Support
-
-If you have questions or need assistance:
-- Open an issue on GitHub
-- Check existing documentation
-- Refer to the code comments
-- Visit the live site: https://learn-it-website.elonmagar6.workers.dev/
-
-## 🎯 Roadmap & Future Enhancements
-
-- [ ] Advanced search functionality with filters
-- [ ] User accounts and bookmarks system
-- [ ] Resource rating and review system
-- [ ] Multiple language support (i18n)
-- [ ] Mobile app version
-- [ ] REST API for resource access
-- [ ] Offline access capability
-- [ ] Community contributions section
-- [ ] Resource export features (PDF, markdown)
-
-## 📊 Project Statistics
-
-- **Primary Language**: JavaScript (66.5%)
-- **Styling**: CSS (23%)
-- **Markup**: HTML (10.5%)
-- **Architecture**: Lightweight vanilla JavaScript
-- **Performance**: Optimized for fast loading
-
-## ⭐ Show Your Support
-
-If you find this project helpful, please consider:
-- Starring the repository ⭐
-- Sharing it with your network 🤝
-- Contributing improvements 💡
-- Reporting bugs 🐛
+This project is licensed under the MIT License. See the `LICENSE` file if present in the repository.
 
 ---
 
-**Happy Learning!** 🚀
-
-Made with ❤️ by Pradip Pun
-
-*Last updated: June 2026*
+Made with ❤️ for IT and CS learners.
