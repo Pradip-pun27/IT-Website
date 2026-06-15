@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Study Hub — Free Resources for CSIT, BIM, BCA</title>
+  <meta name="description" content="Curated free learning resources for IT students in Nepal — YouTube channels, websites, e-books, tools for CSIT, BIM, and BCA.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">IT Study Hub</a>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-inner">
+        <a href="#" class="mobile-menu-link" data-mobile-filter="youtube">▶ YouTube Channels</a>
+        <a href="#" class="mobile-menu-link" data-mobile-filter="website">🌐 Free Websites</a>
+        <a href="#" class="mobile-menu-link" data-mobile-filter="ebook">📖 E-Books & Notes</a>
+        <a href="#" class="mobile-menu-link" data-mobile-filter="practice">⚡ Practice Platforms</a>
+        <a href="#" class="mobile-menu-link" data-mobile-filter="tool">🔧 Tools</a>
+        <a href="#" class="mobile-menu-link" data-mobile-filter="github">⭐ GitHub Repos</a>
+        <a href="#" class="mobile-menu-link" data-mobile-filter="course">🎓 Free Courses</a>
+        <a href="#" class="mobile-menu-link" data-mobile-program="extra">✨ Extra Helpful Sites</a>
+        <a href="#" class="mobile-menu-link" data-mobile-goto="apps">📱 Useful Apps</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">100% Free Resources</span>
+      <h1>Your Gateway to <span class="gradient-text">IT Knowledge</span></h1>
+      <p>Hand-picked free resources for CSIT, BIM, and BCA students in Nepal. YouTube tutorials, websites, e-books, tools — everything you need, zero cost.</p>
+      <div class="hero-buttons">
+        <a href="#resources" class="btn btn-primary">Browse Resources</a>
+        <a href="#programs" class="btn btn-outline">Explore Programs</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-number" id="resourceCount">70+</span><span class="stat-label">Resources</span></div>
+        <div class="stat"><span class="stat-number" id="programCount">4</span><span class="stat-label">Sections</span></div>
+        <div class="stat"><span class="stat-number" id="categoryCount">9</span><span class="stat-label">Categories</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-card card-1">YouTube</div>
+      <div class="floating-card card-2">Websites</div>
+      <div class="floating-card card-3">E-Books</div>
+      <div class="floating-card card-4">Tools</div>
+    </div>
+  </header>
+
+  <section class="search-section" id="resources">
+    <div class="container">
+      <div class="search-bar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" placeholder="Search resources... (e.g., Python, DSA, Calculus)">
+      </div>
+      <div class="filter-tags" id="filterTags">
+        <button class="filter-tag active" data-filter="all">All</button>
+        <button class="filter-tag" data-filter="youtube">YouTube</button>
+        <button class="filter-tag" data-filter="website">Websites</button>
+        <button class="filter-tag" data-filter="ebook">E-Books & Notes</button>
+        <button class="filter-tag" data-filter="practice">Practice</button>
+        <button class="filter-tag" data-filter="tool">Tools</button>
+        <button class="filter-tag" data-filter="github">GitHub Repos</button>
+        <button class="filter-tag" data-filter="course">Free Courses</button>
+        <button class="filter-tag" id="usefulAppsTag" type="button">Useful Apps</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="programs-section" id="programs">
+    <div class="container">
+      <h2 class="section-title">Program-Specific Resources</h2>
+      <p class="section-subtitle">Tailored resources for each program curriculum</p>
+      <div class="program-tabs">
+        <button class="program-tab active" data-program="all">All Programs</button>
+        <button class="program-tab" data-program="csit">BSc CSIT</button>
+        <button class="program-tab" data-program="bim">BIM</button>
+        <button class="program-tab" data-program="bca">BCA</button>
+        <button class="program-tab" data-program="extra">Extra</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="resources-section">
+    <div class="container">
+      <div class="resource-tools">
+        <div>
+          <p class="eyebrow">Smart discovery</p>
+          <h2>Find what to study next</h2>
+          <p>Use filters, search, saved bookmarks, or the random picker when you feel stuck.</p>
+        </div>
+        <div class="resource-tool-actions">
+          <button class="btn btn-outline" id="randomResourceBtn" type="button">🎲 Random resource</button>
+          <button class="btn btn-outline" id="bookmarksOnlyBtn" type="button">🔖 Saved only</button>
+        </div>
+      </div>
+      <div class="resources-grid" id="resourcesGrid"></div>
+      <div class="no-results" id="noResults" style="display:none;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <h3>No resources found</h3>
+        <p>Try different search terms or filters</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="learning-paths" id="learning-paths">
+    <div class="container">
+      <h2 class="section-title">CSIT Semester Learning Paths</h2>
+      <p class="section-subtitle">Choose your CSIT semester and instantly get a focused study plan plus free materials.</p>
+      <div class="semester-picker-card">
+        <label for="semesterSelect">Select CSIT Semester</label>
+        <select id="semesterSelect" class="semester-select" aria-label="Select CSIT semester">
+          <option value="1st Semester">CSIT 1st Semester</option>
+          <option value="2nd Semester">CSIT 2nd Semester</option>
+          <option value="3rd Semester">CSIT 3rd Semester</option>
+          <option value="4th Semester" selected>CSIT 4th Semester</option>
+          <option value="5th Semester">CSIT 5th Semester</option>
+          <option value="6th Semester">CSIT 6th Semester</option>
+          <option value="7th Semester">CSIT 7th Semester</option>
+          <option value="8th Semester">CSIT 8th Semester</option>
+        </select>
+      </div>
+      <div class="path-panel csit-semester-panel" id="pathPanel"></div>
+    </div>
+  </section>
+
+  <section class="toolkit-section" id="toolkit">
+    <div class="container">
+      <h2 class="section-title">Student Toolkit</h2>
+      <p class="section-subtitle">Materials that help with assignments, exams, projects, and internship preparation.</p>
+      <div class="toolkit-grid">
+        <article class="toolkit-card">
+          <span>📚</span>
+          <h3>Exam Prep Pack</h3>
+          <ul>
+            <li>Make 1-page summaries after each chapter.</li>
+            <li>Practice past questions topic-wise.</li>
+            <li>Revise formulas, definitions, diagrams, and algorithms daily.</li>
+          </ul>
+        </article>
+        <article class="toolkit-card">
+          <span>🧪</span>
+          <h3>Project Starter Ideas</h3>
+          <ul>
+            <li>Library / inventory management system.</li>
+            <li>College notice board with admin panel.</li>
+            <li>Weather, expense tracker, quiz, portfolio, and API dashboard apps.</li>
+          </ul>
+        </article>
+        <article class="toolkit-card">
+          <span>💼</span>
+          <h3>Internship Checklist</h3>
+          <ul>
+            <li>GitHub profile with 3 pinned projects.</li>
+            <li>One-page CV + LinkedIn profile.</li>
+            <li>Portfolio website with live demos and screenshots.</li>
+          </ul>
+        </article>
+        <article class="toolkit-card">
+          <span>🧠</span>
+          <h3>Daily Study Routine</h3>
+          <ul>
+            <li>60 min theory + 60 min coding + 30 min revision.</li>
+            <li>Push code to GitHub every week.</li>
+            <li>Write what you learned in your own words.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="apps-section" id="apps">
+    <div class="container">
+      <h2 class="section-title">Useful Apps</h2>
+      <p class="section-subtitle">Free Play Store apps for IT students — tap a category to expand</p>
+      <div class="apps-accordion" id="appsAccordion"></div>
+    </div>
+  </section>
+
+  <section class="quick-links">
+    <div class="container">
+      <h2 class="section-title">Quick Start Guides</h2>
+      <div class="quick-links-grid">
+        <div class="quick-link-card">
+          <div class="ql-icon">1</div>
+          <h3>Pick Your Language</h3>
+          <p>Start with Python — it's beginner-friendly and used across CSIT, BIM, and BCA curriculums.</p>
+          <a href="#" class="ql-link" data-search="Python">Python resources →</a>
+        </div>
+        <div class="quick-link-card">
+          <div class="ql-icon">2</div>
+          <h3>Master DSA</h3>
+          <p>Data Structures & Algorithms are crucial for placements. Use free platforms below.</p>
+          <a href="#" class="ql-link" data-search="DSA">DSA resources →</a>
+        </div>
+        <div class="quick-link-card">
+          <div class="ql-icon">3</div>
+          <h3>Build Projects</h3>
+          <p>Apply what you learn. Start with small projects and gradually increase complexity.</p>
+          <a href="#" class="ql-link" data-search="project">Project ideas →</a>
+        </div>
+        <div class="quick-link-card">
+          <div class="ql-icon">4</div>
+          <h3>Join Community</h3>
+          <p>Connect with peers, ask questions, and share knowledge in these communities.</p>
+          <a href="#" class="ql-link" data-search="community">Communities →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>IT Study Hub</h3>
+          <p>Free learning resources for Nepali IT students. No paywalls, no signups — just quality content.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Programs</h4>
+          <a href="#" data-program-filter="csit">BSc CSIT</a>
+          <a href="#" data-program-filter="bim">BIM</a>
+          <a href="#" data-program-filter="bca">BCA</a>
+          <a href="#" data-program-filter="extra">Extra helpful sites</a>
+        </div>
+        <div class="footer-links">
+          <h4>Categories</h4>
+          <a href="#" data-filter-link="youtube">YouTube Channels</a>
+          <a href="#" data-filter-link="website">Free Websites</a>
+          <a href="#" data-filter-link="ebook">E-Books & Notes</a>
+          <a href="#" data-filter-link="practice">Practice Platforms</a>
+          <a href="#" data-filter-link="github">GitHub Repos</a>
+        </div>
+        <div class="footer-links">
+          <h4>More</h4>
+          <a href="#" data-program-filter="extra">Extra Resources</a>
+          <a href="#apps">Useful Apps</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contribute</h4>
+          <p>Know a great free resource? <a href="https://github.com/Pradip-pun27" target="_blank">Suggest it on GitHub</a>.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 IT Study Hub. Built for Nepali IT students. All resources are free.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
