@@ -350,13 +350,13 @@ const resources = [
     programs: ["csit"]
   },
   {
-    title: "Free Computer Books",
+    title: "FreeComputerBooks",
     type: "ebook",
     icon: "ebook",
-    description: "Directory of free online CS books — algorithms, OS, networking, databases, AI, and more.",
-    tags: ["CS Theory", "OS", "Networking", "AI"],
-    url: "https://github.com/EbookFoundation/free-programming-books",
-    programs: ["csit", "bim", "bca"]
+    description: "Free computer, programming, math, and technical book links organized by subject.",
+    tags: ["Computer Books", "Programming", "Math", "Free"],
+    url: "https://freecomputerbooks.com/",
+    programs: ["csit", "bim", "bca", "extra"]
   },
   {
     title: "Database System Concepts (Slides)",
@@ -640,7 +640,7 @@ const resources = [
     icon: "course",
     description: "Complete CS curriculum built from free courses. Equivalent to an undergraduate CS degree.",
     tags: ["CS Degree", "Self-paced", "Complete"],
-    url: "https://github.com/ossu/computer-science",
+    url: "https://cs.ossu.dev/",
     programs: ["csit", "bca"]
   },
   {
@@ -777,6 +777,224 @@ const resources = [
     tags: ["Research", "CS Theory", "Advanced", "Reading"],
     url: "https://github.com/papers-we-love/papers-we-love",
     programs: ["csit"]
+  },
+
+  // ── EXTRA HELPFUL SITES ──
+  {
+    title: "Planet eBook",
+    type: "ebook",
+    icon: "ebook",
+    description: "Free classic literature e-books in clean PDF, EPUB, and Kindle formats; useful for English reading and general knowledge.",
+    tags: ["Classic Books", "PDF", "EPUB", "Legal"],
+    url: "https://www.planetebook.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "Free-eBooks.net",
+    type: "ebook",
+    icon: "ebook",
+    description: "Free e-books across fiction, academic, career, business, and tech topics; sign-up may be required for downloads.",
+    tags: ["E-books", "Career", "Business", "Free"],
+    url: "https://www.free-ebooks.net/",
+    programs: ["extra"]
+  },
+  {
+    title: "ManyBooks",
+    type: "ebook",
+    icon: "ebook",
+    description: "Large catalog of free and discounted e-books, especially public-domain classics and indie books.",
+    tags: ["E-books", "Classics", "Fiction", "Free"],
+    url: "https://manybooks.net/",
+    programs: ["extra"]
+  },
+  {
+    title: "LibriVox",
+    type: "ebook",
+    icon: "ebook",
+    description: "Free public-domain audiobooks read by volunteers; helpful when you prefer listening instead of reading.",
+    tags: ["Audiobooks", "Public Domain", "Listening"],
+    url: "https://librivox.org/",
+    programs: ["extra"]
+  },
+  {
+    title: "Internet Archive",
+    type: "ebook",
+    icon: "ebook",
+    description: "Massive digital library for public-domain books, old texts, media, and archived web pages.",
+    tags: ["Digital Library", "Books", "Archive", "Research"],
+    url: "https://archive.org/",
+    programs: ["extra"]
+  },
+  {
+    title: "BookBub Free eBooks",
+    type: "ebook",
+    icon: "ebook",
+    description: "Find limited-time free and discounted e-book deals; good for discovering new reading material legally.",
+    tags: ["E-book Deals", "Reading", "Free"],
+    url: "https://www.bookbub.com/ebook-deals/free-ebooks",
+    programs: ["extra"]
+  },
+  {
+    title: "Open Library",
+    type: "ebook",
+    icon: "ebook",
+    description: "Internet Archive project where you can borrow and read digital books online like a library.",
+    tags: ["Library", "Borrow Books", "Research"],
+    url: "https://openlibrary.org/",
+    programs: ["extra"]
+  },
+  {
+    title: "Bookboon",
+    type: "ebook",
+    icon: "ebook",
+    description: "Student-friendly textbooks and business e-books covering study skills, career, management, and technical topics.",
+    tags: ["Textbooks", "Business", "Students"],
+    url: "https://bookboon.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "Feedbooks",
+    type: "ebook",
+    icon: "ebook",
+    description: "Public-domain and original e-books with simple browsing by genre; useful for legal reading material.",
+    tags: ["E-books", "Public Domain", "Reading"],
+    url: "https://www.feedbooks.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "Smashwords",
+    type: "ebook",
+    icon: "ebook",
+    description: "Indie e-book store with many free titles; useful for discovering authors and different genres.",
+    tags: ["Indie Books", "E-books", "Free"],
+    url: "https://www.smashwords.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "Project Gutenberg",
+    type: "ebook",
+    icon: "ebook",
+    description: "Trusted library of 70,000+ free public-domain e-books in HTML, EPUB, Kindle, and plain text formats.",
+    tags: ["Public Domain", "Classics", "EPUB", "Legal"],
+    url: "https://www.gutenberg.org/",
+    programs: ["extra"]
+  },
+  {
+    title: "Google Books",
+    type: "ebook",
+    icon: "ebook",
+    description: "Search book previews, references, and public-domain scans; useful for finding book details and citations.",
+    tags: ["Book Search", "Preview", "Research"],
+    url: "https://books.google.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "PDFBooksWorld",
+    type: "ebook",
+    icon: "ebook",
+    description: "Public-domain PDF books formatted for reading; good for classic novels and older reference books.",
+    tags: ["PDF", "Public Domain", "Classic Books"],
+    url: "https://www.pdfbooksworld.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "FreeTechBooks",
+    type: "ebook",
+    icon: "ebook",
+    description: "Directory of free computer science, engineering, programming, math, and technical books.",
+    tags: ["Tech Books", "Programming", "CS", "Math"],
+    url: "https://www.freetechbooks.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "Bookyards",
+    type: "ebook",
+    icon: "ebook",
+    description: "Online book directory historically used for free e-books and educational reading resources.",
+    tags: ["Book Directory", "E-books", "Reference"],
+    url: "https://www.bookyards.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "GetFreeEBooks",
+    type: "ebook",
+    icon: "ebook",
+    description: "Curated posts about free e-books, reading lists, and downloadable book collections.",
+    tags: ["E-books", "Curated", "Reading Lists"],
+    url: "https://getfreeebooks.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "eBookLobby",
+    type: "ebook",
+    icon: "ebook",
+    description: "Directory-style collection of free e-books by category; useful for quick book discovery.",
+    tags: ["E-books", "Directory", "Categories"],
+    url: "https://www.ebooklobby.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "iLovePDF",
+    type: "tool",
+    icon: "tool",
+    description: "Online PDF toolkit to merge, split, compress, convert, rotate, unlock, and organize PDF files.",
+    tags: ["PDF", "Convert", "Compress", "Merge"],
+    url: "https://www.ilovepdf.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "EZGIF Resize",
+    type: "tool",
+    icon: "tool",
+    description: "Resize, crop, optimize, convert, and edit GIFs, images, and short video files directly in the browser.",
+    tags: ["GIF", "Image Resize", "Optimize", "Convert"],
+    url: "https://ezgif.com/resize",
+    programs: ["extra"]
+  },
+  {
+    title: "PDF24 Tools",
+    type: "tool",
+    icon: "tool",
+    description: "Free browser-based PDF tools for compressing, merging, converting, editing, signing, and OCR.",
+    tags: ["PDF", "OCR", "Convert", "Free Tools"],
+    url: "https://tools.pdf24.org/",
+    programs: ["extra"]
+  },
+  {
+    title: "Squoosh",
+    type: "tool",
+    icon: "tool",
+    description: "Google's free image compression tool; reduce image size before uploading assignments or websites.",
+    tags: ["Image Compress", "Web", "Performance"],
+    url: "https://squoosh.app/",
+    programs: ["extra"]
+  },
+  {
+    title: "TinyPNG",
+    type: "tool",
+    icon: "tool",
+    description: "Compress PNG, JPG, and WebP images while keeping quality high; useful for projects and websites.",
+    tags: ["Image Compress", "PNG", "JPG", "WebP"],
+    url: "https://tinypng.com/",
+    programs: ["extra"]
+  },
+  {
+    title: "Standard Ebooks",
+    type: "ebook",
+    icon: "ebook",
+    description: "Carefully proofread public-domain e-books with beautiful formatting and reliable EPUB/Kindle downloads.",
+    tags: ["Public Domain", "EPUB", "Classics", "Legal"],
+    url: "https://standardebooks.org/",
+    programs: ["extra"]
+  },
+  {
+    title: "Directory of Open Access Books",
+    type: "ebook",
+    icon: "ebook",
+    description: "Academic open-access books from verified publishers; useful for research and assignments.",
+    tags: ["Academic", "Open Access", "Research"],
+    url: "https://www.doabooks.org/",
+    programs: ["extra"]
   }
 ];
 
@@ -990,6 +1208,12 @@ document.querySelector('.programs-section').addEventListener('click', e => {
   document.querySelectorAll('.program-tab').forEach(b => b.classList.remove('active'));
   e.target.classList.add('active');
   activeProgram = e.target.dataset.program;
+  if (activeProgram === 'extra') {
+    activeFilter = 'all';
+    searchQuery = '';
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('.filter-tag').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+  }
   renderResources();
 });
 
@@ -1035,6 +1259,12 @@ document.querySelector('.footer').addEventListener('click', e => {
     e.preventDefault();
     const prog = programLink.dataset.programFilter;
     activeProgram = prog;
+    if (prog === 'extra') {
+      activeFilter = 'all';
+      searchQuery = '';
+      document.getElementById('searchInput').value = '';
+      document.querySelectorAll('.filter-tag').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+    }
     document.querySelectorAll('.program-tab').forEach(b => {
       b.classList.toggle('active', b.dataset.program === prog);
     });
@@ -1060,6 +1290,7 @@ document.getElementById('mobileMenu').addEventListener('click', e => {
   e.preventDefault();
 
   const filter = link.dataset.mobileFilter;
+  const program = link.dataset.mobileProgram;
   const goto = link.dataset.mobileGoto;
 
   mobileMenu.classList.remove('open');
@@ -1067,6 +1298,20 @@ document.getElementById('mobileMenu').addEventListener('click', e => {
 
   if (goto === 'apps') {
     document.getElementById('apps').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  if (program) {
+    activeProgram = program;
+    activeFilter = 'all';
+    searchQuery = '';
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('.program-tab').forEach(b => {
+      b.classList.toggle('active', b.dataset.program === program);
+    });
+    document.querySelectorAll('.filter-tag').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+    document.getElementById('programs').scrollIntoView({ behavior: 'smooth' });
+    renderResources();
     return;
   }
 
@@ -1378,7 +1623,7 @@ let selectedMaterialType = 'youtube';
 
 function updateHeroStats() {
   document.getElementById('resourceCount').textContent = `${resources.length}+`;
-  document.getElementById('programCount').textContent = '3';
+  document.getElementById('programCount').textContent = '4';
   document.getElementById('categoryCount').textContent = new Set(resources.map(r => r.type)).size + 2;
 }
 
